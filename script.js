@@ -1,12 +1,12 @@
 const canvas=document.getElementById('canvas');
 const ctx=canvas.getContext("2d");
 ctx.font = '50px serif';
-const box=25;
+const box=32;
 const ground = new Image();
 ground.src = "img/bg.png";
 const foodImg = new Image();
 foodImg.src = "img/food2.png";
-const canvassize=23;
+const canvassize=18;
 let score=0;
 
 
