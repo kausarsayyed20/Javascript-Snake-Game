@@ -3,7 +3,7 @@ const ctx=canvas.getContext("2d");
 ctx.font = '50px serif';
 const box=32;
 const ground = new Image();
-ground.src = "img/bg.png";
+ground.src = "img/new.jpg";
 const foodImg = new Image();
 foodImg.src = "img/food2.png";
 const canvassize=18;
@@ -45,14 +45,16 @@ let food={
 
 function draw()
 {
-    ctx.fillStyle='#7CFC00';
-   // ctx.drawImage(ground,0,0);
-    ctx.fillRect(box,box,canvassize*box-box,canvassize*box-box);
+    //ctx.fillStyle='#7CFC00';
+   ctx.drawImage(ground,0,0);
+   //ctx.fillRect(box,box,canvassize*box-box,canvassize*box-box);
     
     for(let i=0;i<snake.length;i++)
     {
-            ctx.fillStyle= (i==0) ? "gray" : "gray";
+            ctx.fillStyle= (i==0) ? 'darkgreen' : 'lightgreen';
             ctx.fillRect(snake[i].x,snake[i].y,box,box);    
+            ctx.strokeStyle='darkgreen';
+            ctx.strokeRect(snake[i].x,snake[i].y,box,box);
     }
 
     ctx.drawImage(foodImg, food.x, food.y);
@@ -111,8 +113,8 @@ function draw()
         return false;
     }
 
-    if(snakeX<box || snakeY <box || snakeX >(canvassize-1) * box || 
-        snakeY >(canvassize-1) * box || collision(newHead,snake))
+    if(snakeX<0 || snakeY <0 || snakeX >(canvassize) * box || 
+        snakeY >(canvassize) * box || collision(newHead,snake))
     {
 
         clearInterval(game);
@@ -124,13 +126,15 @@ function draw()
     
 
 
-    ctx.fillStyle='black';
-    ctx.font='24px changa one';
-    ctx.clearRect(0,0,50,25);
+    ctx.fillStyle='white';
+    ctx.font='40px changa one';
+    ctx.fillText(score,2* box,1.2 *box);
+
+    //ctx.clearRect(0,579,800,25);
     //ctx.fillText("score", 2 * box, 0.8* box);
-    ctx.drawImage(foodImg, 0, -2);
+    ctx.drawImage(foodImg, 30, 12);
    // ctx.fillText(score, 30, 20,700);
-   ctx.strokeText(score, 30, 20, 140);
+   //ctx.strokeText(score, 70, 22, 140);
 
 }
 
