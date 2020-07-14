@@ -9,6 +9,13 @@ foodImg.src = "img/food2.png";
 const canvassize=18;
 let score=0;
 
+const d1=new Audio();
+const eating=new Audio();
+const direct=new Audio();
+
+d1.src="audio/dead.mp3"
+eating.src="audio/eating.mp3"
+direct.src="audio/direct.mp3"
 
 let snake=[];
 snake[0]={
@@ -24,13 +31,25 @@ function direction(event)
 {
     
     if(event.keyCode == 37 && dir!='RIGHT')
+    {
         dir="LEFT";
+        direct.play();
+    }
     if(event.keyCode == 38 && dir!='DOWN')
+    {
         dir="UP";
+         direct.play();
+    }
     if(event.keyCode == 39 && dir!='LEFT')
+    {
         dir="RIGHT";
+         direct.play();
+    }
     if(event.keyCode == 40 && dir!='UP')
-        dir="DOWN"; 
+    {
+        dir="DOWN";
+         direct.play(); 
+    }
 }
 
 
@@ -82,6 +101,7 @@ function draw()
     if(snakeX == food.x && snakeY == food.y)
     {
         score+=1;
+        eating.play();
         food= {
             x : Math.floor(1+(Math.random() * (canvassize-1))) * box,
             y : Math.floor(1+(Math.random() * (canvassize-1))) * box
@@ -118,6 +138,7 @@ function draw()
     {
 
         clearInterval(game);
+        d1.play();
         //alert("GAME OVER  SCORE: "+score);
     }
 
@@ -139,3 +160,4 @@ function draw()
 }
 
 let game=setInterval(draw,100);
+
